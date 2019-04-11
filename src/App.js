@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import reducer from './store/reducer';
-import initialState from './store/initialState';
 import './App.css';
 import Main from './components/main';
+import initialState from './store/initialState';
 
-const store = createStore(reducer, initialState);
+const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
 
 class App extends Component {
   render() {
