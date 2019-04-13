@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import actionCreators from '../store/actionCreators';
+import TodoList from './TodoList';
 
 class Main extends Component {
+
     render() {
         return (
             <div>
                 <input type="button" onClick={() => this.props.addTodo({text: 'a new item'})} value="click me"/>
                 <div>todo</div>
-                {
-                    this.props.todos.map(x => <div>{x.text}</div>)
-                }
+                <TodoList todos={this.props.todos} />
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     todos: state.todos
 })
 
