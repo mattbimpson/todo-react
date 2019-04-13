@@ -1,5 +1,6 @@
 import {
-    ADD_TODO
+    ADD_TODO,
+    UPDATE_TODO
 } from './actionTypes';
 
 /* eslint-disable */
@@ -17,9 +18,20 @@ const reducer = (state, action) => {
     switch(action.type) {
         case ADD_TODO:
             const todos = [...state.todos];
-            todos.push({ text: action.todo.text, completed: false })
+            const id = todos.length;
+            todos.push({ id, text: action.todo.text, completed: false })
             const newState = { ...state, todos };
             return newState;
+        case UPDATE_TODO:
+            return { 
+                ...state, 
+                todos: state.todos.map(x => {
+                    if (x.id === action.todo.id) {
+                        return action.todo;
+                    }
+                    return state.todos;
+                })
+            };
         default:
             return state;
     }

@@ -1,6 +1,6 @@
 const initialState = {
     todos: [
-        { text: 'default task', completed: false }
+        { id: 0, text: 'default task', completed: false }
     ]
 }
 
