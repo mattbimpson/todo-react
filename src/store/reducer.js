@@ -29,7 +29,7 @@ const reducer = (state, action) => {
                     if (x.id === action.todo.id) {
                         return action.todo;
                     }
-                    return state.todos;
+                    return x;
                 })
             };
         default:
