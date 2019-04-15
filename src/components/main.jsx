@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import actionCreators from '../store/actionCreators';
 import TodoList from './TodoList';
+import './main.css';
 
 class Main extends Component {
 

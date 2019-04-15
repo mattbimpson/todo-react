@@ -4,8 +4,6 @@ import {
     DELETE_TODO
 } from './actionTypes';
 
-import initialState from './initialState';
-
 /* eslint-disable */
 const updateObject = (oldObj, newObj) => ({
     ...oldObj,
@@ -17,7 +15,7 @@ const updateArray = (oldArr, newArr) => ([
 ]);
 /* eslint-enable */
 
-const reducer = (state = initialState, action) => {
+const reducer = (state, action) => {
     switch(action.type) {
         case ADD_TODO:
             const todos = [...state.todos];
