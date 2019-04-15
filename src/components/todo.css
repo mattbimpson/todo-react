@@ -1,0 +1,19 @@
+.completed {
+    text-decoration: line-through;
+}
+
+.todo-item, .todo-controls {
+    display: flex;
+}
+
+.todo-controls {
+    font-size: small;
+}
+
+.todo-container {
+    border-radius: 5px;
+    background: darkgray;
+    padding: 5px;
+    margin-top: 5px;
+    width: 600px;
+}

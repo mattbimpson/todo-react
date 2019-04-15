@@ -1,6 +1,7 @@
 import {
     ADD_TODO,
-    UPDATE_TODO
+    UPDATE_TODO,
+    DELETE_TODO
 } from './actionTypes';
 
 /* eslint-disable */
@@ -32,6 +33,11 @@ const reducer = (state, action) => {
                     return x;
                 })
             };
+        case DELETE_TODO:
+            return {
+                ...state,
+                todos: state.todos.filter(x => x.id !== action.id)
+            }
         default:
             return state;
     }
