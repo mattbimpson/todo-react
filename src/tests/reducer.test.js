@@ -31,4 +31,16 @@ describe('test reducer', () => {
 
         expect(reducer(initialState, payload)).toEqual(expected);
     });
+
+    it('should delete a todo', () => {
+        const payload = {
+            action: actionTypes.DELETE_TODO,
+            id: 0
+        };
+
+        const expected = { ...initialState };
+        expected.todos = [];
+
+        expect(reducer(initialState, payload)).toEqual(expected);
+    });
 });
