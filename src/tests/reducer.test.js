@@ -26,8 +26,9 @@ describe('test reducer', () => {
             todo: { id: 0, text: 'text changed', completed: true }
         };
 
-        const expected = { ...payload.todo };
+        const expected = { ...initialState };
+        expected.todos[0] = { ...payload.todo };
 
-        expect(reducer(initialState.todos[0], payload)).toEqual(expected);
-    })
+        expect(reducer(initialState, payload)).toEqual(expected);
+    });
 });
