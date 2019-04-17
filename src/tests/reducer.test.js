@@ -1,7 +1,6 @@
 import expect from 'expect';
 import reducer from '../store/reducer';
 import initialState from '../store/initialState';
-//import actionCreators from '../store/actionCreators';
 import * as actionTypes from '../store/actionTypes';
 
 describe('test reducer', () => {
@@ -10,10 +9,25 @@ describe('test reducer', () => {
     });
 
     it('should add an item', () => {
-        const addData = {
+        const newData = {
             action: actionTypes.ADD_TODO,
-            payload: { text: 'text', completed: false }
+            todo: { id: 1, text: 'test todo', completed: false }
         };
-        expect(reducer({}, addData)).toEqual(null);
+
+        let expected = { ...initialState };
+        expected.todos.push(newData.todo);
+
+        expect(reducer(initialState, newData)).toEqual(expected);
     });
+
+    it('should update an item', () => {
+        const payload = {
+            action: actionTypes.UPDATE_TODO,
+            todo: { id: 0, text: 'text changed', completed: true }
+        };
+
+        const expected = { ...payload.todo };
+
+        expect(reducer(initialState.todos[0], payload)).toEqual(expected);
+    })
 });
