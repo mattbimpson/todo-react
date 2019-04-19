@@ -5,7 +5,7 @@
 }
 
 .todo-item, .todo-controls {
-    display: flex;
+    display: block;
 }
 
 .todo-controls {

@@ -12,8 +12,16 @@ html {
 
 .btn {
     border-radius: 5px;
+    border: 0px;
 }
 
 .header {
-    display: flex;
+    display: inline-flex;
+}
+
+.add-container input {
+    margin: 5px;
+    border-radius: 5px;
+    border: 0px;
+    padding: 5px;
 }

@@ -5,14 +5,33 @@ import TodoList from './TodoList';
 import './main.css';
 
 class Main extends Component {
+    state = {
+        description: ''
+    };
+
+    descriptionChanged = e => {
+        if (!e.target.value) return;
+
+        this.setState({ description: e.target.value });
+    };
+
+    stringOrDefault = (text, defaultText) => text !== '' ? text : defaultText;
 
     render() {
         return (
             <div>
                 <div className="header">
-                    stuff to do &nbsp; <input type="button" className="btn" onClick={() => this.props.addTodo({text: 'a new item'})} value="add todo"/>
+                    stuff to do
                 </div>
-                
+                <div className="add-container">
+                    <input type="text" placeholder="what do you need to do?" value={this.state.description} onChange={(e) => { this.descriptionChanged(e) }} />
+                    <input type="button" className="btn" onClick={
+                        () => {
+                            this.props.addTodo({ text: this.stringOrDefault(this.state.description, 'new item') });
+                            this.setState({description: ''});
+                        }
+                        } value="add todo"/>
+                </div>
                 <TodoList todos={this.props.todos} />
             </div>
         )
