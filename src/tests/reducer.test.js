@@ -1,7 +1,7 @@
 import expect from 'expect';
 import reducer from '../store/reducer';
 import initialState from '../store/initialState';
-import * as actionTypes from '../store/actionTypes';
+import actionCreators from '../store/actionCreators';
 
 describe('test reducer', () => {
     it('should return initial state', () => {
@@ -9,38 +9,34 @@ describe('test reducer', () => {
     });
 
     it('should add an item', () => {
-        const newData = {
-            action: actionTypes.ADD_TODO,
-            todo: { id: 1, text: 'test todo', completed: false }
+        //let state = { ...initialState }; // wrong! this splits all elements out into objects. todos becomes { ... } rather than [ ... ]
+        const todo = { id: 1, text: 'test todo', completed: false };
+        const action = actionCreators.addTodo(todo);
+        
+        const expected = {
+            todos: [ ...initialState.todos, todo ]
         };
 
-        let expected = { ...initialState };
-        expected.todos.push(newData.todo);
-
-        expect(reducer(initialState, newData)).toEqual(expected);
+        expect(reducer(initialState, action)).toEqual(expected);
     });
 
     it('should update an item', () => {
-        const payload = {
-            action: actionTypes.UPDATE_TODO,
-            todo: { id: 0, text: 'text changed', completed: true }
-        };
+        const todo = { id: 0, text: 'text changed', completed: true };
+        const action = actionCreators.updateTodo(todo);
 
-        const expected = { ...initialState };
-        expected.todos[0] = { ...payload.todo };
+        const expected = { 
+            todos: [ todo ]
+         };
 
-        expect(reducer(initialState, payload)).toEqual(expected);
+        expect(reducer(initialState, action)).toEqual(expected);
     });
 
     it('should delete a todo', () => {
-        const payload = {
-            action: actionTypes.DELETE_TODO,
-            id: 0
-        };
+        const action = actionCreators.deleteTodo(0);
 
         const expected = { ...initialState };
         expected.todos = [];
 
-        expect(reducer(initialState, payload)).toEqual(expected);
+        expect(reducer(initialState, action)).toEqual(expected);
     });
 });
