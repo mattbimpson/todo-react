@@ -9,8 +9,10 @@ class Main extends Component {
     render() {
         return (
             <div>
-                <input type="button" onClick={() => this.props.addTodo({text: 'a new item'})} value="add todo"/>
-                <div>todo</div>
+                <div className="header">
+                    stuff to do &nbsp; <input type="button" className="btn" onClick={() => this.props.addTodo({text: 'a new item'})} value="add todo"/>
+                </div>
+                
                 <TodoList todos={this.props.todos} />
             </div>
         )
