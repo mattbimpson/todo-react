@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import actionCreators from '../store/actionCreators';
 import './ConfirmBtn.css';
 
 class ConfirmBtn extends Component {
