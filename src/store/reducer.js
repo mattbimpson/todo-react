@@ -1,7 +1,8 @@
 import {
     ADD_TODO,
     UPDATE_TODO,
-    DELETE_TODO
+    DELETE_TODO,
+    CLEAR_ALL
 } from './actionTypes';
 
 import initialState from './initialState';
@@ -39,6 +40,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 todos: state.todos.filter(x => x.id !== action.id)
+            }
+        case CLEAR_ALL:
+            return {
+                ...state,
+                todos: []
             }
         default:
             return state;

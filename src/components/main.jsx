@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import actionCreators from '../store/actionCreators';
 import TodoList from './TodoList';
+import ConfirmBtn from './ConfirmBtn';
 import './main.css';
 
 class Main extends Component {
     state = {
         description: ''
     };
+
+    clearAll = () => {
+        this.props.clearAll();
+    }
 
     descriptionChanged = e => {
         if (!e.target.value) return;
@@ -33,6 +38,11 @@ class Main extends Component {
                         } value="add todo"/>
                 </div>
                 <TodoList todos={this.props.todos} />
+                {
+                    this.props.todos.length ?
+                    <ConfirmBtn buttonText="Clear all your todos?" action={this.clearAll} />
+                    : null
+                }
             </div>
         )
     }
@@ -43,7 +53,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addTodo: (todo) => dispatch(actionCreators.addTodo(todo))
+    addTodo: (todo) => dispatch(actionCreators.addTodo(todo)),
+    clearAll: () => dispatch(actionCreators.clearAll())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

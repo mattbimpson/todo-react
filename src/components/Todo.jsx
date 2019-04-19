@@ -19,7 +19,7 @@ class Todo extends Component {
         return (
             <div className={`todo-container ${todo.completed ? 'completed' : ''}`}>
                 <div className='todo-item'>
-                    id: {`${todo.id} ${todo.text}`}
+                    {todo.text}
                 </div>
                 <div className='todo-controls'>
                     done <input type="checkbox" checked={todo.completed} onChange={this.completedChanged}></input>
