@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_TODO:
             const todos = [...state.todos];
-            const id = todos.length;
+            const id = todos.length ? todos[todos.length -1].id + 1 : 0;
             todos.push({ id, text: action.todo.text, completed: false })
             const newState = { ...state, todos };
             return newState;
