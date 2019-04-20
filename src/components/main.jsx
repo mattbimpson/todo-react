@@ -35,7 +35,7 @@ class Main extends Component {
                             this.props.addTodo({ text: this.stringOrDefault(this.state.description, 'new item') });
                             this.setState({description: ''});
                         }
-                        } value="add todo"/>
+                        } value="add todo" disabled={!this.state.description} />
                 </div>
                 <TodoList todos={this.props.todos} />
                 {
