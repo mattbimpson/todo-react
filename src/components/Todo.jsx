@@ -17,13 +17,13 @@ class Todo extends Component {
     render = () => {
         const todo = this.props.todo;
         return (
-            <div className='todo-container'>
-                <div className={`todo-item ${todo.completed ? 'completed' : ''}`}>
-                    id: {`${todo.id} ${todo.text}`}
+            <div className={`todo-container ${todo.completed ? 'completed' : ''}`}>
+                <div className='todo-item'>
+                    {todo.text}
                 </div>
                 <div className='todo-controls'>
-                    mark as done <input type="checkbox" checked={todo.completed} onChange={this.completedChanged}></input>
-                    <input type="button" value="remove" onClick={this.remove}></input>
+                    done <input type="checkbox" checked={todo.completed} onChange={this.completedChanged}></input>
+                    <input type="button" className="btn" value="remove" onClick={this.remove}></input>
                 </div>
             </div>
         )

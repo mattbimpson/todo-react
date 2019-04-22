@@ -1,23 +1,19 @@
-import React, { Component } from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux'
-import reducer from './store/reducer';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { persistor, store } from './store';
+
 import './App.css';
 import Main from './components/main';
-import initialState from './store/initialState';
 
-const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() );
-
-class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <div className="App">
-          <Main />
-        </div>
-      </Provider>
-    );
-  }
+const App = () => {
+  return (
+    <Provider store={store}>
+      <PersistGate loading={<div />} persistor={persistor}>
+        <Main />
+      </PersistGate>
+    </Provider>
+  );
 }
 
 export default App;
