@@ -15,7 +15,7 @@ class ConfirmBtn extends Component {
             <div>
                 {
                     !this.state.confirming ?
-                        <input type="button" value={this.props.buttonText} onClick={ () => this.toggleConfirm(true) } />
+                        <input type="button" id="btnMain" value={this.props.buttonText} onClick={ () => this.toggleConfirm(true) } />
                     :
                     <div>
                         <input type="button" className="confirm-yes" value="Yes" onClick={ () => {
