@@ -10,11 +10,14 @@ const store = mockStore(initialState);
 
 configure({ adapter: new Adapter() });
 
-describe('todo item', () => {
+describe('main', () => {
   it('should render', () => {
-    const wrapper = shallow(<Main store={store} />);
-    //wrapper.find('#txtTodo').simulate('change', { target: { value: 'Hello' } });
-    //wrapper.find('#btnAdd').simulate('click');
-    //expect(wrapper.find('txtTodo').exists()).toBe(true);
+    shallow(<Main store={store} />);
   });
+
+  it('should enable add todo button when description added', () => {
+    const wrapper = shallow(<Main store={store} />).dive().dive();
+    wrapper.find('#txtTodo').simulate('change', { target: { value: 'Hello' } });
+    expect(wrapper.find('#btnAdd').prop('disabled')).toBe(false);
+  })
 });

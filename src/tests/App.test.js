@@ -15,8 +15,8 @@ it('renders without crashing', () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-describe('todo item', () => {
+describe('App', () => {
   it('should render', () => {
-    const wrapper = shallow(<App store={mockStore} />);
+    shallow(<App store={mockStore} />);
   });
 });
