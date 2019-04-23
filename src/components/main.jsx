@@ -10,6 +10,11 @@ class Main extends Component {
         description: ''
     };
 
+    addTodo = () => {
+        this.props.addTodo({ text: this.stringOrDefault(this.state.description, 'new item') });
+        this.setState({description: ''});
+    }
+
     clearAll = () => {
         this.props.clearAll();
     }
@@ -29,13 +34,8 @@ class Main extends Component {
                     stuff to do
                 </div>
                 <div className="add-container">
-                    <input type="text" placeholder="what do you need to do?" value={this.state.description} onChange={(e) => { this.descriptionChanged(e) }} />
-                    <input type="button" className="btn" onClick={
-                        () => {
-                            this.props.addTodo({ text: this.stringOrDefault(this.state.description, 'new item') });
-                            this.setState({description: ''});
-                        }
-                        } value="add todo" disabled={!this.state.description} />
+                    <input type="text" id="txtTodo" placeholder="what do you need to do?" value={this.state.description} onChange={(e) => { this.descriptionChanged(e) }} />
+                    <input type="button" id="btnAdd" className="btn" onClick={this.addTodo} value="add todo" disabled={!this.state.description} />
                 </div>
                 <TodoList todos={this.props.todos} />
                 {
