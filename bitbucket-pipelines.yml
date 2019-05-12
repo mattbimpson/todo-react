@@ -13,4 +13,4 @@ pipelines:
             - npm install -g surge
             - npm install
             - npm run build
-            - surge build todo.surge.sh
+            - surge build
