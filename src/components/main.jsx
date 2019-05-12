@@ -25,6 +25,12 @@ class Main extends Component {
         this.setState({ description: e.target.value });
     };
 
+    keyDown = (e) => {
+        if (e.key === 'Enter') {
+            this.addTodo();
+        }
+    }
+
     stringOrDefault = (text, defaultText) => text !== '' ? text : defaultText;
 
     render() {
@@ -34,7 +40,7 @@ class Main extends Component {
                     stuff to do
                 </div>
                 <div className="add-container">
-                    <input type="text" id="txtTodo" placeholder="what do you need to do?" value={this.state.description} onChange={(e) => { this.descriptionChanged(e) }} />
+                    <input type="text" id="txtTodo" onKeyDown={this.keyDown} placeholder="what do you need to do?" value={this.state.description} onChange={(e) => { this.descriptionChanged(e) }} />
                     <input type="button" id="btnAdd" className="btn" onClick={this.addTodo} value="add todo" disabled={!this.state.description} />
                 </div>
                 <TodoList todos={this.props.todos} />
