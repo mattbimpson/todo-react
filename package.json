@@ -16,7 +16,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "mv build/index.html build/200.html && surge build juvenile-purpose.surge.sh"
+    "deploy": "mv build/index.html build/200.html && surge build todo-bimp.surge.sh"
   },
   "eslintConfig": {
     "extends": "react-app"
