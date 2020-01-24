@@ -1,4 +1,7 @@
-html {
+import styled from 'styled-components';
+
+export const Content =
+  styled.div`
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
@@ -8,20 +11,18 @@ html {
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
-}
+  `;
 
-.btn {
-    border-radius: 5px;
-    border: 0px;
-}
 
-.header {
+export const Header =
+  styled.div`
     display: inline-flex;
-}
+  `;
 
-.add-container input {
+export const AddContainerInput =
+  styled.input`
     margin: 5px;
     border-radius: 5px;
     border: 0px;
     padding: 5px;
-}
+  `;

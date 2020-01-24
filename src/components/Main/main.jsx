@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import actionCreators from '../../store/actionCreators';
 import TodoList from '../TodoList';
 import ConfirmBtn from '../ConfirmBtn/ConfirmBtn';
-import './main.css';
+import { Header, AddContainerInput, Content } from './Styles';
 
 const Main = (props) => {
 
@@ -38,19 +38,21 @@ const Main = (props) => {
 
     return (
         <>
-            <div className="header">
-                stuff to do
-            </div>
-            <div className="add-container">
-                <input type="text" id="txtTodo" onKeyDown={keyDown} placeholder="what do you need to do?" value={description} onChange={(e) => { descriptionChanged(e) }} />
-                <input type="button" id="btnAdd" className="btn" onClick={addTodoClicked} value="add todo" disabled={!description} />
-            </div>
-            <TodoList todos={todos} />
-            {
-                todos.length ?
-                <ConfirmBtn buttonText="Clear all your todos?" action={clearAllClicked} />
-                : null
-            }
+            <Content>
+                <Header>
+                    stuff to do
+                </Header>
+                <div>
+                    <AddContainerInput type="text" id="txtTodo" onKeyDown={keyDown} placeholder="what do you need to do?" value={description} onChange={(e) => { descriptionChanged(e) }} />
+                    <AddContainerInput type="button" id="btnAdd" className="btn" onClick={addTodoClicked} value="add todo" disabled={!description} />
+                </div>
+                <TodoList todos={todos} />
+                {
+                    todos.length ?
+                    <ConfirmBtn buttonText="Clear all your todos?" action={clearAllClicked} />
+                    : null
+                }
+            </Content>
         </>
     )
 }

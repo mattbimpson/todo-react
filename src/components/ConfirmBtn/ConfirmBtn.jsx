@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ConfirmInput } from './Styles';
+import { Input, ConfirmInput } from './Styles';
 
 const ConfirmBtn = (props) => {
     const { action, buttonText } = props;
@@ -14,7 +14,7 @@ const ConfirmBtn = (props) => {
         <>
             {
                 !confirming ?
-                    <input type="button" id="btnMain" value={buttonText} onClick={ () => toggleConfirm(true) } />
+                    <Input type="button" id="btnMain" value={buttonText} onClick={ () => toggleConfirm(true) } />
                 :
                 <div>
                     <ConfirmInput type="button" confirm={true} value="Yes" onClick={ () => {
