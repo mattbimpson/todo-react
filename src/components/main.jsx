@@ -37,7 +37,7 @@ const Main = (props) => {
     };
 
     return (
-        <div>
+        <>
             <div className="header">
                 stuff to do
             </div>
@@ -51,7 +51,7 @@ const Main = (props) => {
                 <ConfirmBtn buttonText="Clear all your todos?" action={clearAllClicked} />
                 : null
             }
-        </div>
+        </>
     )
 }
 

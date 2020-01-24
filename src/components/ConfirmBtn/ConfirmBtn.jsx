@@ -11,7 +11,7 @@ const ConfirmBtn = (props) => {
     }
 
     return (
-        <div>
+        <>
             {
                 !confirming ?
                     <input type="button" id="btnMain" value={buttonText} onClick={ () => toggleConfirm(true) } />
@@ -25,7 +25,7 @@ const ConfirmBtn = (props) => {
                 </div>
             }
             
-        </div>
+        </>
     )
 }
 
