@@ -1,34 +1,32 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './ConfirmBtn.css';
 
-class ConfirmBtn extends Component {
-    state = {
-        confirming: false
-    };
+const ConfirmBtn = (props) => {
+    const { action, buttonText } = props;
 
-    toggleConfirm = toggle => {
-        this.setState({ confirming: toggle });
+    const [confirming, setConfirming] = useState(false);
+
+    function toggleConfirm(toggle) {
+        setConfirming(toggle);
     }
 
-    render = () => {
-        return (
-            <div>
-                {
-                    !this.state.confirming ?
-                        <input type="button" id="btnMain" value={this.props.buttonText} onClick={ () => this.toggleConfirm(true) } />
-                    :
-                    <div>
-                        <input type="button" className="confirm-yes" value="Yes" onClick={ () => {
-                            this.props.action();
-                            this.toggleConfirm(false);
-                        }} />
-                        <input type="button" className="confirm-no" value="No" onClick={ () => this.toggleConfirm(false) } />
-                    </div>
-                }
-                
-            </div>
-        )
-    }
+    return (
+        <div>
+            {
+                !confirming ?
+                    <input type="button" id="btnMain" value={buttonText} onClick={ () => toggleConfirm(true) } />
+                :
+                <div>
+                    <input type="button" className="confirm-yes" value="Yes" onClick={ () => {
+                        action();
+                        toggleConfirm(false);
+                    }} />
+                    <input type="button" className="confirm-no" value="No" onClick={ () => toggleConfirm(false) } />
+                </div>
+            }
+            
+        </div>
+    )
 }
 
 export default ConfirmBtn;
