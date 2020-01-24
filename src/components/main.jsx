@@ -1,57 +1,58 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import actionCreators from '../store/actionCreators';
 import TodoList from './TodoList';
 import ConfirmBtn from './ConfirmBtn';
 import './main.css';
 
-class Main extends Component {
-    state = {
-        description: ''
-    };
+const Main = (props) => {
 
-    addTodo = () => {
-        this.props.addTodo({ text: this.stringOrDefault(this.state.description, 'new item') });
-        this.setState({description: ''});
+    const { addTodo, clearAll, todos } = props;
+
+    const [description, setDescription] = useState('');
+
+    function addTodoClicked() {
+        addTodo({ text: stringOrDefault(description, 'new item') });
+        setDescription('');
     }
 
-    clearAll = () => {
-        this.props.clearAll();
+    function clearAllClicked() {
+        clearAll();
     }
 
-    descriptionChanged = e => {
+    function descriptionChanged(e) {
         if (!e.target.value) return;
 
-        this.setState({ description: e.target.value });
+        setDescription(e.target.value);
     };
 
-    keyDown = (e) => {
+    function keyDown(e) {
         if (e.key === 'Enter') {
-            this.addTodo();
+            addTodo();
         }
     }
 
-    stringOrDefault = (text, defaultText) => text !== '' ? text : defaultText;
+    function stringOrDefault (text, defaultText) {
+        return text !== '' ? text : defaultText;
+    };
 
-    render() {
-        return (
-            <div>
-                <div className="header">
-                    stuff to do
-                </div>
-                <div className="add-container">
-                    <input type="text" id="txtTodo" onKeyDown={this.keyDown} placeholder="what do you need to do?" value={this.state.description} onChange={(e) => { this.descriptionChanged(e) }} />
-                    <input type="button" id="btnAdd" className="btn" onClick={this.addTodo} value="add todo" disabled={!this.state.description} />
-                </div>
-                <TodoList todos={this.props.todos} />
-                {
-                    this.props.todos.length ?
-                    <ConfirmBtn buttonText="Clear all your todos?" action={this.clearAll} />
-                    : null
-                }
+    return (
+        <div>
+            <div className="header">
+                stuff to do
             </div>
-        )
-    }
+            <div className="add-container">
+                <input type="text" id="txtTodo" onKeyDown={keyDown} placeholder="what do you need to do?" value={description} onChange={(e) => { descriptionChanged(e) }} />
+                <input type="button" id="btnAdd" className="btn" onClick={addTodoClicked} value="add todo" disabled={!description} />
+            </div>
+            <TodoList todos={todos} />
+            {
+                todos.length ?
+                <ConfirmBtn buttonText="Clear all your todos?" action={clearAllClicked} />
+                : null
+            }
+        </div>
+    )
 }
 
 const mapStateToProps = state => ({
