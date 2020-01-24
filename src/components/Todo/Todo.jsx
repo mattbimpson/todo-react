@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import actionCreators from '../store/actionCreators';
-import './todo.css';
+import actionCreators from '../../store/actionCreators';
+import { TodoContainer, TodoItem, TodoControls, Btn } from './Styles';
 
 const Todo = (props) => {
 
@@ -18,14 +18,14 @@ const Todo = (props) => {
     }
 
     return (
-        <div className={`todo-container ${todo.completed ? 'completed' : ''}`} onClick={completedChanged}>
-            <div className='todo-item'>
+        <TodoContainer completed={todo.completed} onClick={completedChanged}>
+            <TodoItem>
                 {todo.text}
-            </div>
-            <div className='todo-controls'>
-                <input type="button" className="btn" value="X" onClick={remove}></input>
-            </div>
-        </div>
+            </TodoItem>
+            <TodoControls>
+                <Btn type="button" className="btn" value="X" onClick={remove}></Btn>
+            </TodoControls>
+        </TodoContainer>
     )
 }
 

@@ -4,7 +4,7 @@ import { PersistGate } from 'redux-persist/lib/integration/react';
 import { persistor, store } from './store';
 
 import './App.css';
-import Main from './components/main';
+import Main from './components/Main/main';
 
 const App = () => {
   return (

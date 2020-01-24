@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
-import actionCreators from '../store/actionCreators';
-import TodoList from './TodoList';
-import ConfirmBtn from './ConfirmBtn/ConfirmBtn';
+import actionCreators from '../../store/actionCreators';
+import TodoList from '../TodoList';
+import ConfirmBtn from '../ConfirmBtn/ConfirmBtn';
 import './main.css';
 
 const Main = (props) => {
