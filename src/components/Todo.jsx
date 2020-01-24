@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux'
 import actionCreators from '../store/actionCreators';
 import './todo.css';
 
-class Todo extends Component {
-    completedChanged = () => {
-        const todo = { ...this.props.todo };
-        todo.completed = !todo.completed;
-        this.props.updateTodo(todo);
+const Todo = (props) => {
+
+    const { todo, updateTodo, deleteTodo } = props;
+
+    function completedChanged() {
+        const todoCopy = { ...todo };
+        todoCopy.completed = !todo.completed;
+        updateTodo(todoCopy);
     }
 
-    remove = () => {
-        this.props.deleteTodo(this.props.todo.id);
+    function remove() {
+        deleteTodo(todo.id);
     }
 
-    render = () => {
-        const todo = this.props.todo;
-        return (
-            <div className={`todo-container ${todo.completed ? 'completed' : ''}`} onClick={this.completedChanged}>
-                <div className='todo-item'>
-                    {todo.text}
-                </div>
-                <div className='todo-controls'>
-                    <input type="button" className="btn" value="X" onClick={this.remove}></input>
-                </div>
+    return (
+        <div className={`todo-container ${todo.completed ? 'completed' : ''}`} onClick={completedChanged}>
+            <div className='todo-item'>
+                {todo.text}
             </div>
-        )
-    }
+            <div className='todo-controls'>
+                <input type="button" className="btn" value="X" onClick={remove}></input>
+            </div>
+        </div>
+    )
 }
 
 const mapDispatchToProps = dispatch => ({
